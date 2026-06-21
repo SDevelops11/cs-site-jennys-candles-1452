@@ -1,346 +1,247 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  CheckCircle, 
-  Star, 
-  Users, 
-  Shield, 
-  Zap, 
-  Sparkles, 
-  MessageSquare, 
-  Sun,
-  Cpu,
-  ShieldCheck,
-  Database,
-  Palette,
-  Compass,
-  Scale,
-  Coins,
-  Briefcase,
-  Heart,
-  Apple
-} from 'lucide-react';
-import { useAppContext } from '../context/AppContext';
-import { BusinessLogo } from '../components/Navbar';
-
-function ServiceIcon({ iconName, className = "h-5 w-5" }: { iconName: string; className?: string }) {
-  switch (iconName) {
-    case 'Cpu':
-      return <Cpu className={className} />;
-    case 'ShieldCheck':
-      return <ShieldCheck className={className} />;
-    case 'Database':
-      return <Database className={className} />;
-    case 'Palette':
-      return <Palette className={className} />;
-    case 'Sparkles':
-      return <Sparkles className={className} />;
-    case 'Compass':
-      return <Compass className={className} />;
-    case 'Scale':
-      return <Scale className={className} />;
-    case 'Coins':
-      return <Coins className={className} />;
-    case 'Briefcase':
-      return <Briefcase className={className} />;
-    case 'Heart':
-      return <Heart className={className} />;
-    case 'Sun':
-      return <Sun className={className} />;
-    case 'Apple':
-      return <Apple className={className} />;
-    default:
-      return <CheckCircle className={className} />;
-  }
-}
+import { Flame, Sparkles, Heart, Star, ArrowRight, MessageSquare, Palette, Gift, ShoppingBag, Mail } from 'lucide-react';
 
 export default function Home() {
-  const { activeProfile, isLoading } = useAppContext();
-  const theme = activeProfile.theme;
+  const brandColor = '#863253'; // Primary Brand Color
 
-  if (isLoading) {
-    return (
-      <div className="flex-1 flex flex-col items-center justify-center min-h-[60vh]">
-        <div className="flex flex-col items-center gap-4">
-          <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${theme.logoColor}`} />
-          <p className="text-sm font-medium text-gray-500 font-mono">Reshaping layout architecture...</p>
-        </div>
-      </div>
-    );
-  }
+  const services = [
+    {
+      title: "Handcrafted Candle Making",
+      description: "Discover our passion for creating custom-made candles that fill your home with warmth and delightful aromas. Each candle is carefully poured with attention to detail and quality ingredients.",
+      icon: <Palette size={48} className={`text-[${brandColor}]`} />,
+      link: "/services"
+    }
+  ];
+
+  const testimonials = [
+    {
+      quote: "The services provided by Jenny's Candles completely transformed our operations. Their expertise in Candle Making is exceptional.",
+      author: "Sarah Jenkins, CEO",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=80&q=80" // General Workspace/Tech: member/portrait
+    },
+    {
+      quote: "Unbelievable responsiveness and attention to detail. Highly recommended for any serious business.",
+      author: "Marcus Vance, Director",
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=80&q=80" // General Workspace/Tech: creative workspace team (can be used for portrait)
+    }
+  ];
+
+  const unsplashImages = {
+    hero: 'https://images.unsplash.com/photo-1603006905-53a99e2b61db?auto=format&fit=crop&w=1400&q=80', // candle glow
+    about: 'https://images.unsplash.com/photo-1602872030268-b3d4f29e2467?auto=format&fit=crop&w=800&q=80', // hand poured candle maker
+    craft: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&w=800&q=80', // aromatic candle oils - currently not used directly in a section, but good to have
+    wellness: 'https://images.unsplash.com/photo-1616037064883-fa496841249b?auto=format&fit=crop&w=800&q=80', // candles and flowers - currently not used directly in a section, but good to have
+  };
+
 
   return (
-    <div className={`flex flex-col w-full text-gray-800 ${theme.fontClass} animate-fadeIn`}>
-      
-      {/* 🚀 DYNAMIC HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-16 pb-20 sm:pt-24 sm:pb-28 lg:pt-32 lg:pb-36">
-        {/* Backdrop Hero Image */}
-        {activeProfile.heroImage && (
-          <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
-            <img 
-              src={activeProfile.heroImage} 
-              alt="Hero Backdrop" 
-              className="w-full h-full object-cover opacity-10 blur-[2px]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-white" />
-          </div>
-        )}
-        {/* Background ambient subtle blur decorations that change with the theme colors */}
-        <div className="absolute inset-0 z-0 opacity-40">
-          <div className={`absolute -top-40 right-20 w-72 h-72 rounded-full blur-3xl filter ${
-            activeProfile.id === 'tech-saas' ? 'bg-indigo-300' :
-            activeProfile.id === 'creative-agency' ? 'bg-rose-300' :
-            activeProfile.id === 'corporate-legal' ? 'bg-emerald-300' : 'bg-teal-300'
-          }`} />
-          <div className={`absolute bottom-10 left-10 w-96 h-96 rounded-full blur-3xl filter ${
-            activeProfile.id === 'tech-saas' ? 'bg-violet-200' :
-            activeProfile.id === 'creative-agency' ? 'bg-amber-150' :
-            activeProfile.id === 'corporate-legal' ? 'bg-stone-300' : 'bg-green-100'
-          }`} />
-        </div>
+    <div className="min-h-screen bg-amber-50 text-gray-800 font-sans">
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
-            
-            {/* Copy Block */}
-            <div className="lg:col-span-7 flex flex-col text-left">
-              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-6 border w-max ${theme.badgeBg}`}>
-                <BusinessLogo iconName={activeProfile.logoIcon} className="h-3 w-3" />
-                <span>Premium {activeProfile.name} Template</span>
-              </span>
-              
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1] mb-6">
-                {activeProfile.tagline}
-              </h1>
-              
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 max-w-2xl">
-                {activeProfile.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-4 sm:items-center">
-                <Link
-                  to="/services"
-                  className={`flex items-center justify-center font-semibold text-sm px-6 py-3 rounded-xl text-white shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5 ${theme.primaryBg} ${theme.primaryHover}`}
-                >
-                  Our Capabilities
-                </Link>
-                <Link 
-                  to="/contact" 
-                  className="flex items-center gap-2 justify-center font-semibold text-sm px-6 py-3 rounded-xl bg-gray-50 text-gray-800 hover:bg-gray-100 transition"
-                >
-                  <span>Book Consult</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-            
-            {/* Vibe Visual Anchor Component */}
-            <div className="mt-12 lg:mt-0 lg:col-span-5 flex justify-center">
-              <div className="w-full max-w-md">
-                
-                {activeProfile.id === 'tech-saas' && (
-                  <div className="bg-slate-950 rounded-2xl shadow-2xl p-6 border border-slate-800 font-mono text-left w-full relative">
-                    <div className="flex gap-1.5 mb-4 border-b border-slate-900 pb-3">
-                      <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                      <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-                      <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                      <span className="text-[10px] text-slate-500 ml-2">vertex-ops-terminal</span>
-                    </div>
-                    <div className="space-y-2 text-xs sm:text-xs text-slate-300">
-                      <p className="text-indigo-400">$ npm install @vertex/pipelines</p>
-                      <p className="text-slate-500">✔ Initialized secure framework environments.</p>
-                      <p className="text-slate-400">$ vertex deploy --tenant=enterprise</p>
-                      <p className="text-emerald-400">⚡ Global Routing active [3000ms response]</p>
-                      <p className="text-slate-500">✔ Sync complete: database.schema verified.</p>
-                      <div className="bg-slate-900 p-3 rounded mt-4 border border-slate-800">
-                        <div className="flex justify-between items-center text-[10px] text-indigo-400 mb-1">
-                          <span>SYSTEM METRIC</span>
-                          <span>ONLINE</span>
-                        </div>
-                        <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                          <div className="bg-indigo-500 h-full w-[94%]" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {activeProfile.id === 'creative-agency' && (
-                  <div className="relative select-none w-full aspect-square bg-gradient-to-tr from-rose-100 to-amber-100 rounded-3xl p-8 shadow-xl border border-rose-100 flex flex-col justify-between items-start text-left overflow-hidden">
-                    <div className="absolute right-[-20%] top-[-20%] w-72 h-72 rounded-full border border-rose-300/40 animate-spin-slow" />
-                    <Sparkles className="h-10 w-10 text-rose-500 mb-4" />
-                    <div>
-                      <h4 className="font-bold text-2xl tracking-tighter text-gray-900 uppercase">Aesthetic Overhaul</h4>
-                      <p className="text-xs text-rose-800 tracking-wide font-mono mt-1">VOL. 09 // EDITION 2026</p>
-                    </div>
-                    <p className="text-sm font-light text-gray-700 leading-snug">
-                      Pixel-perfect layouts designed to connect corporate ecosystems with luxury art principles.
-                    </p>
-                    <span className="text-[10px] bg-rose-600 text-white font-bold py-1 px-2.5 rounded-full uppercase tracking-wider">
-                      Premium Craft
-                    </span>
-                  </div>
-                )}
-
-                {activeProfile.id === 'corporate-legal' && (
-                  <div className="w-full bg-stone-50 border-4 border-double border-stone-300 shadow-xl p-8 rounded-lg text-left font-serif">
-                    <div className="flex justify-between border-b-2 border-stone-200 pb-4 mb-4">
-                      <Shield className="h-8 w-8 text-emerald-800" />
-                      <div className="text-right text-[10px] tracking-wide font-sans text-stone-500 font-semibold uppercase">
-                        <div>Established London, 1994</div>
-                        <div>Reg. Counselor #440-9</div>
-                      </div>
-                    </div>
-                    <h3 className="text-stone-900 font-bold text-xl leading-snug mb-3">
-                      Audit Covenant of Absolute Safety
-                    </h3>
-                    <p className="text-xs sm:text-xs text-stone-700 leading-relaxed font-sans italic mb-4">
-                      "Providing secure wealth vehicles, M&A oversight, and continuous international compliance checks across double-taxation structures."
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-full bg-emerald-50 text-emerald-800 font-bold text-xs flex items-center justify-center border border-emerald-800">
-                        H
-                      </div>
-                      <div className="text-[10px] font-sans">
-                        <div className="font-bold text-stone-900">Sir Alexander Hargreaves</div>
-                        <div className="text-stone-500">Legal Senior Director</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {activeProfile.id === 'holistic-wellness' && (
-                  <div className="w-full aspect-square rounded-full bg-gradient-to-br from-teal-50 to-emerald-50 p-12 border border-teal-100 flex flex-col justify-center items-center text-center shadow-xl relative overflow-hidden">
-                    <div className="absolute inset-0 bg-radial from-transparent to-teal-50/20" />
-                    <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mb-4 text-teal-700 animate-pulse">
-                      <Sun className="h-8 w-8" />
-                    </div>
-                    <h4 className="text-teal-900 font-bold text-lg mb-1 font-serif">Solen Breathing Circle</h4>
-                    <p className="text-xs text-teal-700 max-w-[200px] leading-relaxed">
-                      Deep somatic therapy cycles engineered for chronic adrenal exhaustion resetting.
-                    </p>
-                    <div className="mt-4 flex gap-1 justify-center">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-600"></span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-200"></span>
-                    </div>
-                  </div>
-                )}
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 📊 SERVICES DYNAMIC SUMMARY SECTION */}
-      <section className="bg-gray-50 py-20 px-4 sm:px-6 lg:px-8 border-t border-b border-gray-100 flex justify-center">
-        <div className="max-w-7xl w-full">
-          <div className="text-center mb-16">
-            <span className={`text-xs font-bold uppercase tracking-wider ${theme.textAccent}`}>Expert Capabilities</span>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mt-2 sm:text-4xl">Core Services Focused on Growth</h2>
-            <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
-              Our business patterns are custom-built to support rapid deployment, modern digital architecture, and optimal client delivery.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {activeProfile.services.map((service, index) => (
-              <div 
-                key={service.id} 
-                className={`bg-white p-8 border border-gray-100 shadow-xs transition hover:shadow-md ${theme.cardRounding}`}
-              >
-                <div className={`p-3 w-12 h-12 rounded-lg flex items-center justify-center mb-6 bg-slate-50 ${theme.textAccent}`}>
-                  <ServiceIcon iconName={service.icon} className="h-5 w-5" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">{service.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">{service.description}</p>
-                <Link 
-                  to="/services" 
-                  className={`inline-flex items-center text-xs font-semibold ${theme.textAccent} hover:underline`}
-                >
-                  Explore service specifications &rarr;
-                </Link>
-              </div>
-            ))}
-          </div>
-          
-          <div className="flex justify-center mt-12">
-            <Link 
-              to="/services" 
-              className={`inline-flex items-center gap-2 font-semibold text-sm py-2.5 px-6 rounded-lg text-white ${theme.primaryBg} ${theme.primaryHover} shadow-xs transition`}
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+        <img
+          src={unsplashImages.hero}
+          alt="Cozy candle glow illuminating a room with warm ambiance"
+          className="absolute inset-0 w-full h-full object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div> {/* Darker gradient for text */}
+        <div className="relative z-10 p-6 max-w-4xl mx-auto text-white">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 drop-shadow-lg leading-tight">
+            Handcrafted Candles that Create Moments
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 leading-relaxed font-light drop-shadow-md">
+            At Jenny's Candles, we craft more than just scents; we craft comfort, relaxation, and connection for your home in Randburg, Gauteng.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link
+              to="/shop"
+              className={`inline-flex items-center justify-center px-8 py-4 bg-[${brandColor}] text-white font-semibold text-lg rounded-full shadow-lg hover:bg-[${brandColor}]/90 transition-all duration-300 transform hover:-translate-y-1`}
             >
-              <span>View Services Matrix</span>
-              <ArrowRight className="h-4 w-4" />
+              Shop Our Collection <ArrowRight className="ml-2" size={20} />
+            </Link>
+            <Link
+              to="/about"
+              className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold text-lg rounded-full shadow-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:-translate-y-1"
+            >
+              Discover Our Craft <Sparkles className="ml-2" size={20} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ⭐ TRUST & CLIENT TESTIMONIALS */}
-      <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 flex justify-center">
-        <div className="max-w-7xl w-full">
-          <div className="text-center mb-16">
-            <div className="flex justify-center items-center gap-1 mb-2">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
-              ))}
+      {/* Value Proposition / Intro Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white text-center">
+        <h2 className="text-4xl font-bold mb-6 text-gray-900">
+          Transform Your Home with Jenny's Candles
+        </h2>
+        <p className="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed">
+          We believe a home should be a sanctuary. That's why we create handcrafted candles designed to do more than just scent a room. They create moments of comfort, relaxation, and connection. Using carefully selected fragrances and quality materials, our candles help you transform your space into a place you love to be in.
+        </p>
+        <div className="mt-12 flex flex-wrap justify-center gap-8 text-[${brandColor}]">
+            <div className="flex flex-col items-center">
+                <Flame size={50} className="mb-2" />
+                <span className="font-semibold text-lg text-gray-800">Cozy Ambiance</span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Client Testimonials</h2>
-            <p className="mt-4 text-base text-gray-600">See how companies and founders scale using our systems.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {activeProfile.testimonials.map((t) => (
-              <div 
-                key={t.id} 
-                className={`bg-gray-50/50 p-8 border border-gray-150 relative flex flex-col justify-between ${theme.cardRounding}`}
-              >
-                <span className="absolute top-4 right-6 text-6xl text-gray-200 font-serif leading-none select-none">“</span>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6 italic relative z-10">"{t.quote}"</p>
-                
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={t.avatar} 
-                    alt={t.name} 
-                    className="h-11 w-11 rounded-full object-cover border border-gray-200" 
-                    referrerPolicy="no-referrer"
-                  />
-                  <div>
-                    <h4 className="text-sm font-bold text-gray-900">{t.name}</h4>
-                    <p className="text-xs text-gray-500">{t.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+            <div className="flex flex-col items-center">
+                <Heart size={50} className="mb-2" />
+                <span className="font-semibold text-lg text-gray-800">Heartfelt Comfort</span>
+            </div>
+            <div className="flex flex-col items-center">
+                <Sparkles size={50} className="mb-2" />
+                <span className="font-semibold text-lg text-gray-800">Artisan Quality</span>
+            </div>
         </div>
       </section>
 
-      {/* 📞 CTA PANEL */}
-      <section className="w-full relative overflow-hidden text-white flex justify-center">
-        <div className={`absolute inset-0 bg-gradient-to-r ${theme.gradientFrom} ${theme.gradientTo}`} />
-        <div className="relative z-10 max-w-5xl text-center py-16 px-6 sm:py-24 sm:px-12">
-          <h2 className="text-3xl font-extrabold sm:text-4xl tracking-tight">
-            Ready to Accelerate Your Enterprise?
-          </h2>
-          <p className="mt-4 text-base sm:text-lg max-w-2xl mx-auto text-white/90 leading-relaxed">
-            Get in touch with an expert counselor today and prepare a solid roadmap custom tailored for your target audience.
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+      {/* About Us / Our Story Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-amber-50">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1">
+            <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-tight">
+              Our Passion for the Perfect Glow
+            </h2>
+            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              Nestled in Randburg, Gauteng, Jenny's Candles was born from a simple desire: to bring genuine warmth and delightful aromas into every home. We pour our hearts into every candle, selecting premium waxes, natural wicks, and unique fragrance oils that evoke serenity and joy.
+            </p>
+            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+              It’s more than just a product; it’s a craft refined with love, ensuring each flickering flame creates an unforgettable experience for you and your loved ones. Experience the Jenny's Candles difference.
+            </p>
             <Link
               to="/contact"
-              className="px-6 py-3 bg-white text-gray-900 font-bold rounded-xl text-sm shadow-md hover:bg-gray-50 transition"
+              className={`inline-flex items-center px-8 py-3 bg-[${brandColor}] text-white font-semibold rounded-full shadow-md hover:bg-[${brandColor}]/90 transition-all duration-300`}
             >
-              Get In Touch Now
+              Get in Touch <MessageSquare className="ml-2" size={20} />
+            </Link>
+          </div>
+          <div className="order-1 md:order-2 flex justify-center">
+            <img
+              src={unsplashImages.about}
+              alt="Hands pouring wax into a candle mold, showing the candle making process"
+              className="rounded-3xl shadow-xl transform hover:scale-105 transition-transform duration-500 w-full max-w-lg object-cover h-96"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900">
+            Our Signature Craft
+          </h2>
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            Experience the dedication and artistry that goes into every Jenny's Candle. We offer exceptional custom candle making services.
+          </p>
+        </div>
+        <div className="max-w-4xl mx-auto grid md:grid-cols-1 lg:grid-cols-1 gap-10">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="bg-amber-50 rounded-2xl p-8 shadow-lg border-b-4 border-[${brandColor}] flex flex-col items-center text-center transform hover:scale-[1.02] transition-transform duration-300"
+            >
+              <div className="mb-6 flex items-center justify-center">
+                {service.icon}
+              </div>
+              <h3 className="text-3xl font-bold mb-4 text-gray-900">{service.title}</h3>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">{service.description}</p>
+              <Link
+                to={service.link}
+                className={`inline-flex items-center px-6 py-3 bg-[${brandColor}] text-white font-semibold rounded-full shadow-md hover:bg-[${brandColor}]/90 transition-all duration-300`}
+              >
+                Learn More <ArrowRight className="ml-2" size={20} />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Our Process / Craftsmanship Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-amber-100">
+        <div className="max-w-6xl mx-auto text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900">
+            The Art of Jenny's Candles
+          </h2>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Our candles are a symphony of carefully chosen elements, crafted with intention and a sprinkle of magic.
+          </p>
+        </div>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
+          <div className="bg-white rounded-2xl p-8 shadow-xl flex flex-col items-center text-center group transform hover:-translate-y-2 transition-transform duration-300">
+            <Gift size={60} className={`text-[${brandColor}] mb-6 group-hover:scale-110 transition-transform`} />
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">Select Finest Materials</h3>
+            <p className="text-gray-700">We source premium waxes, lead-free wicks, and exquisite fragrance oils for a clean, long-lasting burn.</p>
+          </div>
+          <div className="bg-white rounded-2xl p-8 shadow-xl flex flex-col items-center text-center group transform hover:-translate-y-2 transition-transform duration-300">
+            <Palette size={60} className={`text-[${brandColor}] mb-6 group-hover:scale-110 transition-transform`} />
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">Hand-Poured Perfection</h3>
+            <p className="text-gray-700">Each candle is meticulously hand-poured in Randburg, ensuring consistency and a beautiful finish.</p>
+          </div>
+          <div className="bg-white rounded-2xl p-8 shadow-xl flex flex-col items-center text-center group transform hover:-translate-y-2 transition-transform duration-300">
+            <Flame size={60} className={`text-[${brandColor}] mb-6 group-hover:scale-110 transition-transform`} />
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">Curated for Your Home</h3>
+            <p className="text-gray-700">From classic scents to unique blends, our candles are designed to complement your home's ambiance.</p>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Testimonials Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
+            What Our Customers Say
+          </h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-amber-50 p-8 rounded-3xl shadow-lg border-t-4 border-[${brandColor}] hover:shadow-xl transition-shadow duration-300"
+              >
+                <Star size={24} className={`text-amber-500 mb-4 inline-block mr-1`} />
+                <Star size={24} className={`text-amber-500 mb-4 inline-block mr-1`} />
+                <Star size={24} className={`text-amber-500 mb-4 inline-block mr-1`} />
+                <Star size={24} className={`text-amber-500 mb-4 inline-block mr-1`} />
+                <Star size={24} className={`text-amber-500 mb-4 inline-block`} />
+                <p className="text-lg italic text-gray-700 mb-6 leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <div className="flex items-center">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.author}
+                    className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-[${brandColor}]"
+                  />
+                  <div>
+                    <p className="font-semibold text-gray-900">{testimonial.author}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className={`py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[${brandColor}] to-[${brandColor}]/90 text-white text-center`}>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Ready to Light Up Your Home?
+          </h2>
+          <p className="text-xl md:text-2xl mb-10 font-light">
+            Explore our handcrafted collection or connect with us to create your custom candle experience.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <Link
+              to="/shop"
+              className={`inline-flex items-center justify-center px-10 py-4 bg-white text-[${brandColor}] font-semibold text-lg rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1`}
+            >
+              Browse Candles <ShoppingBag className="ml-2" size={20} />
             </Link>
             <Link
-              to="/services"
-              className="px-6 py-3 border border-white/40 text-white font-bold rounded-xl text-sm hover:bg-white/10 transition"
+              to="/contact"
+              className="inline-flex items-center justify-center px-10 py-4 border-2 border-white text-white font-semibold text-lg rounded-full shadow-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:-translate-y-1"
             >
-              Explore Services Specification
+              Contact Us <Mail className="ml-2" size={20} />
             </Link>
           </div>
         </div>
