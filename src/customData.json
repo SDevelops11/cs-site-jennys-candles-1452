@@ -1,41 +1,64 @@
 {
   "id": "custom-business",
-  "name": "Mock Premium Business",
-  "companyName": "Mock Premium Business Co",
-  "tagline": "Accelerating enterprise delivery with custom methods",
-  "description": "Our custom corporate layout is dynamically injected by the generative platform.",
-  "supportEmail": "contact@mockpremium.com",
-  "phone": "+1 (555) 019-2834",
-  "address": "123 Main St, Suite 100, New York, NY",
+  "name": "Candle Maker",
+  "companyName": "Jenny's Candles",
+  "tagline": "Handcrafted Candles for Moments of Comfort and Connection",
+  "description": "We create handcrafted candles that do more than scent a room they create moments of comfort, relaxation, and connection. Using carefully selected fragrances and quality materials, our candles help customers transform their homes into spaces they love to be in.",
+  "supportEmail": "jenny@gmail.com",
+  "phone": "01223456789",
+  "address": "Randburg, Gauteng",
   "logoIcon": "Sparkles",
+  "heroImage": "https://images.unsplash.com/photo-1594917544062-840a1b6c0e8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ3ODR8MHwxfHNlYXJjaHwyfHxoYW5kY3JhZnRlZCUyMGNhbmRsZXMlMjBjb3N5fGVufDB8fHx8MTcxNzQxNjM0OHww&ixlib=rb-4.0.3&q=80&w=1080",
+  "ctaText": "Request a Quote",
   "theme": {
-    "primaryBg": "bg-[#4b2a89]",
+    "primaryBg": "bg-[var(--primary-color)]",
     "primaryHover": "hover:opacity-90",
-    "textAccent": "text-[#4b2a89]",
-    "bgLight": "bg-slate-50",
-    "badgeBg": "bg-[#4b2a89]/10 text-[#4b2a89] border-[#4b2a89]/20",
-    "gradientFrom": "from-[#4b2a89]",
-    "gradientTo": "to-[#1a9b4c]",
-    "ringFocus": "focus:ring-[#4b2a89]",
+    "textAccent": "text-[var(--primary-color)]",
+    "bgLight": "#fdf3f5",
+    "badgeBg": "bg-[var(--primary-color)]/10 text-[var(--primary-color)] border-[var(--primary-color)]/20",
+    "gradientFrom": "from-[var(--primary-color)]",
+    "gradientTo": "#863253",
+    "ringFocus": "focus:ring-[var(--primary-color)]",
     "fontClass": "font-sans",
-    "logoColor": "text-[#4b2a89]",
-    "cardRounding": "rounded-xl"
+    "logoColor": "text-[var(--primary-color)]",
+    "cardRounding": "rounded-xl",
+    "primaryColorHex": "#863253",
+    "textOnPrimary": "text-white"
   },
   "services": [
     {
       "id": "1",
-      "title": "Custom Integration Testing",
-      "description": "Dynamic evaluation.",
+      "title": "Candle Making",
+      "description": "Custom made candles tailored to your preferences, creating the perfect ambiance for any occasion.",
       "icon": "Sparkles"
     }
   ],
   "testimonials": [
     {
       "id": "1",
-      "name": "Alex Smith",
-      "role": "Verified Customer",
-      "quote": "Breathtaking design.",
-      "avatar": "https://ui-avatars.com/api/?name=Alex+Smith&background=A2C11C&color=283739"
+      "name": "Sarah Jenkins",
+      "role": "CEO",
+      "quote": "The services provided by Jenny's Candles completely transformed our operations. Their expertise in Candle Making is exceptional.",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d877341ace?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ3ODR8MHwxfHNlYXJjaHwyMHx8d29tYW4lMjBwb3J0cmFpdCUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3MTc0MTU3MDh8MA&ixlib=rb-4.0.3&q=80&w=1080"
+    },
+    {
+      "id": "2",
+      "name": "Marcus Vance",
+      "role": "Director",
+      "quote": "Unbelievable responsiveness and attention to detail. Highly recommended for any serious business.",
+      "avatar": "https://images.unsplash.com/photo-1547425296-cb7ad68b813f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ3ODR8MHwxfHNlYXJjaHwxNXx8bWFuJTIwcG9ydHJhaXQlMjBwcm9mZXNzaW9uYWx8ZW58MHx8fHwxNzE3NDE1NzA4fDA&ixlib=rb-4.0.3&q=80&w=1080"
     }
-  ]
+  ],
+  "formDetails": {
+    "customLabel": "What type of candle are you interested in?",
+    "customPlaceholder": "e.g., Scented, Soy, Pillar, Votive",
+    "options": [
+      "Scented Candles",
+      "Soy Candles",
+      "Pillar Candles",
+      "Votive Candles",
+      "Custom Orders"
+    ],
+    "messagePlaceholder": "Tell us more about your candle needs and preferences..."
+  }
 }
