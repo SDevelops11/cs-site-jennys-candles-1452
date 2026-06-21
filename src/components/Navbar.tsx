@@ -11,7 +11,6 @@ import {
 } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 
-// Dynamic logo component mapping for business types
 export function BusinessLogo({ iconName, className = "h-6 w-6" }: { iconName: string; className?: string }) {
   switch (iconName) {
     case 'Terminal':
@@ -35,12 +34,10 @@ export default function Navbar() {
 
   return (
     <div className={`w-full ${theme.fontClass} flex flex-col`}>
-      {/* Main sticky navigation header */}
       <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-xs transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             
-            {/* Header Brand */}
             <NavLink to="/" className="flex items-center gap-2.5 group">
               <div className={`p-2 rounded-xl bg-gray-50 group-hover:scale-105 transition ${theme.logoColor}`}>
                 <BusinessLogo iconName={activeProfile.logoIcon} className="h-6 w-6" />
@@ -50,7 +47,6 @@ export default function Navbar() {
               </span>
             </NavLink>
             
-            {/* Desktop Navigation Link menu */}
             <nav className="hidden md:flex items-center space-x-8">
               <NavLink 
                 to="/" 
@@ -77,7 +73,6 @@ export default function Navbar() {
                 Contact
               </NavLink>
               
-              {/* Primary Call To Action in Header */}
               <NavLink 
                 to="/contact"
                 className={`ml-4 text-xs font-semibold px-4 py-2 rounded-lg shadow-xs transition-transform hover:-translate-y-0.5 ${theme.primaryBg} ${theme.primaryHover} ${theme.textOnPrimary || 'text-white'}`}
@@ -86,13 +81,11 @@ export default function Navbar() {
               </NavLink>
             </nav>
             
-            {/* Portable Mobile Hamburger Button */}
             <div className="md:hidden flex items-center">
               <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-gray-500 hover:text-gray-700 p-2 focus:ring-2 focus:ring-gray-100 rounded-lg transition"
                 aria-label="Toggle menu"
-                id="hamburger-navigation-menu-btn"
               >
                 {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
@@ -100,7 +93,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Portable Mobile Full Drawer */}
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-gray-100 bg-white shadow-lg animate-fadeIn">
             <div className="px-4 pt-2 pb-6 space-y-2">
